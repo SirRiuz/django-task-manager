@@ -39,7 +39,7 @@ class User(AbstractBaseUser , PermissionsMixin):
      todo los datos de lo usuarios
     """
     
-    objects = ''
+    objects = CustomUserManager()
 
     userName = models.CharField(
         max_length=120,
