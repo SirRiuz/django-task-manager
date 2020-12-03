@@ -4,6 +4,32 @@ from django.db import models
 from django.contrib.auth.models import (BaseUserManager,PermissionsMixin,AbstractBaseUser)
 
 
+class CustomUserManager(BaseUserManager):
+    
+    """
+     Este manager permite crear 
+     usuarios normales y super 
+     usuarios
+    """
+
+    def create_user(self , **kwargs) -> object:
+        user = self.model(
+            userName=kwargs['userName'],
+            nickName=kwargs['nickName'],
+            email=kwargs['email'],
+            phoneNumber=kwargs['phoneNumber']
+        )
+        user.set_password(kwargs['password'])
+        user.save(using=self._db)
+        return user
+
+
+    def create_superuser(self , **kwargs) -> object:
+        user = self.create_user(**kwargs)
+        user.is_staff = True
+        user.is_admin = True
+        user.save(using=self._db)
+        return user
 
 
 class User(AbstractBaseUser , PermissionsMixin):
@@ -29,6 +55,13 @@ class User(AbstractBaseUser , PermissionsMixin):
         help_text='Nick name'
     )
     
+    imageProfile = models.ImageField(
+        upload_to='image' , 
+        blank=True , 
+        default='' , 
+        help_text='Foto de perfil'
+    )
+    
     email = models.EmailField(null=False,unique=True,help_text='Correo electronico')
     phoneNumber = models.IntegerField(null=True,blank=True,help_text='Numero de telefono')
 
@@ -37,7 +70,7 @@ class User(AbstractBaseUser , PermissionsMixin):
 
 
     USERNAME_FIELD = 'nickName'
-    REQUIRED_FIELDS = [  ]
+    REQUIRED_FIELDS = [ 'userName' , 'email' , 'password' , 'phoneNumber' ]
 
 
     def __str__(self):
