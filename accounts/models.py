@@ -27,7 +27,7 @@ class CustomUserManager(BaseUserManager):
     def create_superuser(self , **kwargs) -> object:
         user = self.create_user(**kwargs)
         user.is_staff = True
-        user.is_admin = True
+        user.is_superuser = True
         user.save(using=self._db)
         return user
 
@@ -66,7 +66,7 @@ class User(AbstractBaseUser , PermissionsMixin):
     phoneNumber = models.IntegerField(null=True,blank=True,help_text='Numero de telefono')
 
     is_staff = models.BooleanField(default=False)
-    is_admin = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
 
 
     USERNAME_FIELD = 'nickName'
