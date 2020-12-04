@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'accounts',
     'task'
 ]
@@ -56,7 +57,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [ 'C:/Users/Mateo Jimenez/Desktop/env/brockTime/templates' ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -67,6 +68,11 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'templates/static/'
 ]
 
 WSGI_APPLICATION = 'core.wsgi.application'
@@ -117,6 +123,7 @@ USE_TZ = True
 
 
 AUTH_USER_MODEL = 'accounts.User'
+LOGIN_URL = '/login/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/

@@ -7,7 +7,8 @@ from .models import Task
 
 @admin.register(Task)
 class TackAdmin(admin.ModelAdmin):
-    pass
+    list_display = [ 'title' , 'taskStatus' , 'isComplete' , 'user']
+
 
 
 

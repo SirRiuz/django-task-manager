@@ -8,13 +8,11 @@ from accounts.models import User
 
 class Task(models.Model):
 
-
     """
      Este modelo se encarga de gestionar
      todas las tareas
     """
-    
-    user = models.OneToOneField(to=User , on_delete=models.CASCADE)
+    user = models.ForeignKey(to=User , on_delete=models.CASCADE , unique=False)
 
     title = models.CharField(
         null=False,default='',
@@ -40,7 +38,6 @@ class Task(models.Model):
     taskExpire = models.DateField(null=False , help_text='Fecha de expiracion de la tarea')
     taskCreated = models.DateField(auto_now=True , help_text='Fecha de creacion de la tarea')
     
-
     def __str__(self):
         return self.title
 
