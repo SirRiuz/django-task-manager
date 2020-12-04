@@ -15,7 +15,7 @@ class Task(models.Model):
     """
     
     user = models.OneToOneField(to=User , on_delete=models.CASCADE)
-    
+
     title = models.CharField(
         null=False,default='',
         max_length=100,
@@ -41,4 +41,6 @@ class Task(models.Model):
     taskCreated = models.DateField(auto_now=True , help_text='Fecha de creacion de la tarea')
     
 
+    def __str__(self):
+        return self.title
 

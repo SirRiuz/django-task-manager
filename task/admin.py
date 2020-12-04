@@ -1,3 +1,13 @@
+
+# Django
 from django.contrib import admin
 
-# Register your models here.
+# Models
+from .models import Task
+
+@admin.register(Task)
+class TackAdmin(admin.ModelAdmin):
+    pass
+
+
+
