@@ -1,0 +1,41 @@
+
+
+#dialog-container {
+    display:none;
+}
+
+.scream{
+    left: 0;
+    top:0;
+    z-index: 1;
+    position: absolute;
+    background: rgba(0,0,0,0.1);
+    height: 100%;
+    width: 100%;
+}
+
+
+.modal{
+    z-index: 3;
+    position: absolute;
+    background:white;
+    margin: 10% auto;
+    width: 35%;
+    left:25%;
+    border-radius: 10px;
+}
+
+.modal-container{
+    border-radius: 10px;
+    background:white;
+    padding:10px;
+}
+
+
+.form-container{
+    text-align: center;
+    margin: 0 auto;
+}
+
+
+

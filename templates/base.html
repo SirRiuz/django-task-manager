@@ -1,29 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block header %}
     {% endblock %}
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" type="text/css" >
+    <link rel="stylesheet" href=" {% static '/css/modal.css' %} ">
 </head>
 <body>
+
+    {% load static %}
     
     <style>
         body{
             -webkit-touch-callout: none; /* iOS Safari */
             -webkit-user-select: none; /* Safari */
-             -khtml-user-select: none; /* Konqueror HTML */
-               -moz-user-select: none; /* Old versions of Firefox */
-                -ms-user-select: none; /* Internet Explorer/Edge */
-                    user-select: none; /* Non-prefixed version, currently
-                                          supported by Chrome, Edge, Opera and Firefox */
+            -khtml-user-select: none; /* Konqueror HTML */
+            -moz-user-select: none; /* Old versions of Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                           supported by Chrome, Edge, Opera and Firefox */
         }
     </style>
 
 
+    <div id="dialog-container">
+        <div class='modal'>
+            <div class="modal-container">
+                <h3>Crear tarea</h3>
+                <div class='form-container'>
+                    <form method="POST" action='/create/task/'> 
+                        {% csrf_token %} 
+                        <input name='title' placeholder='Titulo' /><br/>
+                        <input name='description' placeholder='Descripcion' /><br/>
+                        <input name='user' placeholder='Asignar tarea' /><br/>
+                        <input name='taskExpire' type="date" placeholder='Fecha limite' /><br/>
+                        <button type="submit"> Enviar datos </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class='scream' id='scream'></div>
+    </div>
+
+    {% if user.is_authenticated %}
+        <h4 id='show-dialog' >CREAR TAREA</h4>
+
+    {% else %}
+
+        nav login
+
+    {% endif %}
+
     {% block contend %}
     {% endblock %}
+
+    <script src="{% static '/js/createTaskDialog.js' %}" ></script>
 
 </body>
 </html>

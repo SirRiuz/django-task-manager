@@ -16,3 +16,6 @@ def homePage(request):
             'tasks':tasks
         }
     )
+
+def basePage(request):
+    return redirect('/home/')

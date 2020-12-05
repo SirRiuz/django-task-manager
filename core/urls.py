@@ -1,11 +1,12 @@
 
 from django.contrib import admin
 from django.urls import path
-from .views import homePage
+from .views import (homePage,basePage)
 from task.views import createTask
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('create/task/', createTask),
-    path('', homePage),
+    path('home/', homePage),
+    path('', basePage),
 ]
